@@ -1,66 +1,43 @@
 let express = require("express")
 let app = express()
-
-let morgan = require("morgan")
-
-app.use(morgan("common"))
-app.use("/", express.static("public"))
-const topTenMovies =[
-    {
-      title: 'Harry Potter and the Sorcerer\'s Stone1',
-      author: 'J.K. Rowling1'
-    },
-    {
-      title: 'Lord of the Rings2',
-      author: 'J.R.R. Tolkien2'
-    },
-    {
-      title: 'Twilight3',
-      author: 'Stephanie Meyer3'
-    },
-    {
-        title: 'Harry Potter and the Sorcerer\'s Stone4',
-        author: 'J.K. Rowling4'
-      },
-    {
-        title: 'Harry Potter and the Sorcerer\'s Stone5',
-        author: 'J.K. Rowling5'
-      },
-      {
-        title: 'Lord of the Rings6',
-        author: 'J.R.R. Tolkien6'
-      },
-      {
-        title: 'Twilight7',
-        author: 'Stephanie Meyer7'
-      },
-      {
-        title: 'Harry Potter and the Sorcerer\'s Stone8',
-        author: 'J.K. Rowling8'
-      },
-      {
-        title: 'Lord of the Rings9',
-        author: 'J.R.R. Tolkien9'
-      },
-      {
-        title: 'Twilight10',
-        author: 'Stephanie Meyer10'
-      }  
-  ];
+const portNumber = 8083
   
 app.get("/movies", (req, res)=>{
-  res.json(topTenMovies)
+  res.send("Successfully GET request returning data on all the movies")
 })
 
-app.get("/", (req, res)=>{
-    res.send("This site is up/running from root!")
+app.get("/movies/data/:title", (req, res)=>{
+    res.send("Successfully return data about a single movie by title to the user")
 })
  
-app.use((err, req, res, next)=>{
-    console.log(err.stack)
-    res.status(500).send("Request cannot be processed, an error has occurred!")
+app.get("/movies/genre/:name", (req, res)=>{
+  res.send("Successfully return data about a genre (description) by name/title")   
 })
 
-app.listen("8080", ()=>{
+app.get("/movies/director/:name", (req, res)=>{
+  res.send("Successfully return data about a director (bio, birth year, death year) by name")  
+})
+
+app.post("/movies/register", (req, res)=>{
+  res.send("Successfully allow new users to register")
+})
+
+app.put("/movies/update/:username", (req, res)=>{
+  res.send("Successfully allow users to update their user info (username)")
+})
+
+app.post("/movies/AddToFavourite/:username", (req, res)=>{
+  res.send("Successfully allow users to add a movie to their list of favorites")
+})
+
+app.delete("/movies/removeMovie/:movie/:username", (req, res)=>{
+  res.send("Successfully allow users to remove a movie from their list of favorites")
+})
+
+app.delete("/movies/deregister/:useremail", (req, res)=>{
+  res.send("Successfully allow existing users to deregister")
+})
+ 
+app.listen(portNumber, ()=>{
     console.log("This is up and running.")
 })

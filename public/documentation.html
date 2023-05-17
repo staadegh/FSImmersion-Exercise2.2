@@ -1,3 +1,71 @@
 This API will provide users with access to information about different
 movies, directors, and genres. Users will be able to sign up, update their
 personal information, and create a list of their favorite movies.
+
+
+1. Description: Return a list of ALL movies to the user 
+End Point: /movies
+Method: GET
+Query parameters: none
+Data expected in the body: none
+Format of response data: JSON
+
+
+2. Description: Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user   
+End Point: /movies/data/title
+Method: GET
+Query parameters: title
+Data expected in the body: none
+Format of response data: JSON
+
+3. Description: Return data about a genre (description) by name/title (e.g., “Thriller”)
+End Point: /movies/genre/name
+Method: GET
+Query parameters: name
+Data expected in the body: none
+Format of response data: JSON
+
+4. Description: Return data about a director (bio, birth year, death year) by name 
+End Point: /movies/director/name
+Method: GET 
+Query parameters: name (in the url)
+Data expected in the body: none
+Format of response data: JSON
+
+5. Description: Allow new users to register
+End Point /movies/register
+Method: POST
+Query parameters: none
+Data expected in the body: JSON e.g {"Username":"Alan Smith", "email":"username@hotmail.com", "Address": "1234, xyz street.", "City": "Aurora", "State": "Co", "Country": "USA"}
+Format of response data: JSON
+
+6. Description: Allow users to update their user info (username)
+End Point: /movies/update/username
+Method: PUT 
+Query parameters: username (in the url)
+Data expected in the body: 
+Format of response data: JSON
+
+7. Description: Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later)  
+End Point /movies/AddToFavourite/username 
+Method: POST 
+Query parameters: username (in the url)
+Data expected in the body: JSON e.g {"movieTitle":"Alan Smith", "Creator":"Alan Smith", "Create Date": "12/Jan/2020"}
+Format of response data: JSON
+  
+8. Description: Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed—more on this later)   
+End Point: /movies/removeMovie/movie/username
+Method: DELETE 
+Query parameters: username and movie (in the url)
+Data expected in the body: None
+Format of response data: A text message that the movie is removed.
+
+
+9. Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
+End Point: /movies/deregister/useremail
+Method: DELETE 
+Query parameters: useremail (in the url)
+Data expected in the body: None
+Format of response data: A text message that the user email is removed.
+
+
